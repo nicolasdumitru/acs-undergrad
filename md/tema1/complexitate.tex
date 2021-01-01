@@ -7,8 +7,16 @@
 \usepackage{indentfirst}
 \usepackage{graphicx}
 \usepackage{enumerate}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
 
 \renewcommand{\refname}{Bibliography}
+
+\pagestyle{fancy}
+% \fancyhf{}
+% \fancyhead[L]{}
+\fancyhead[C]{}
+\fancyhead[R]{Nicolas Dumitru}
 
 \title{Complexitatea algoritmilor și caracterizarea asimptotică a timpului de rulare}
 \author{Nicolas Dumitru}
@@ -76,9 +84,9 @@ Definițiile formale pentru cele trei notații asimptotice sunt:
 
 	\item Notația $o$
 	      \begin{multline}
-		      o(g(n)) = \{ f(n) \mid \exists c \in \mathbb{R},
-		      \exists n_0 \in \mathbb{N},\; c > 0,\, n > 0 \text{ astfel încât } \\
-		      \forall n \geq n_0, 0 \leq f(n) \leq c g(n) \}
+		      o(g(n)) = \{ f(n) \mid \forall c > 0,
+		      \exists n_0 > 0 \text{ astfel încât } \\
+		      0 \leq f(n) < c g(n), \forall n \geq n_0 \}
 	      \end{multline}
 
 	\item Notația $\omega$
@@ -87,8 +95,21 @@ Definițiile formale pentru cele trei notații asimptotice sunt:
 		      \exists n_0 > 0 \text{ astfel încât } \\
 		      0 \leq c g(n) < f(n), \forall n \geq n_0 \}
 	      \end{multline}
-
 \end{enumerate}
+
+Intuitiv, notația $o$ înseamnă că $f(n)$ devine nesemnificativ în comparație cu
+$g(n)$ când $n$ devine mare:
+\begin{equation*}
+	\lim_{n \to \infty} \frac{f(n)}{g(n)} = 0
+\end{equation*}
+
+Relația $f(n) = \omega(g(n))$ implică
+\begin{equation*}
+	\lim_{n \to \infty} \frac{f(n)}{g(n)} = \infty
+\end{equation*}
+dacă există limita. În alte cuvinte, $f(n)$ devine arbitrar de mare față de g(n)
+când n devine mare.
+
 
 \subsection{Notații asimptotice în ecuații și inecuații}
 Numărul de funcții anonime dintr-o expresie este înțeles ca fiind egal cu
@@ -102,7 +123,47 @@ clară.
 
 % aplicatii in lumea reala/use cases (> 1 pg)
 \section{Importanța complexității algoritmilor}
-Vedem ce are de zis Aaronson pe tema asta (n-am curaj sa-l contrazic).
+Așa cum spuneam în introducere, teoria complexității este extrem de utilă și
+importantă. Una dintre obiecțiile imediate la acest tip de analiză este de
+următoarea formă: dacă o problemă este rezolvabilă în timp polinomial, dar
+polinomul este $n^{50000}$? Sau dacă o problemă ia un timp exponențial, dar
+exponențiala este $1.00000001^n$? Răspunsul pragmatic este că, dacă astfel de
+cazuri ar fi apărut frecvent în practică, am fi folosit o abstracție inadecvată.
+Totuși, până acum, se pare că folosim abstracția bună \cite{qcsd}.
+
+\subsection{Grădina Zoologică a Complexității}
+% TODO: link complexity zoo
+Vom enumera cele mai elementare clase de complexitate --- oile și caprele
+Grădinii Zoogice a Complexității.
+\begin{itemize}
+	\item \textbf{P} este clasa problemelor rezolvabile de o mașină Turing
+	      într-un timp polinomial. (Notă: prin \glqq problemă\grqq, ne vom referi
+	      mereu la o \emph{problemă de decizie}: o problemă pentru care intrările sunt
+	      șiruri de câte $n$ biți și ieșirile sunt fie \glqq da\grqq, fie \glqq
+	      nu\grqq.)
+	\item \textbf{PSPACE} este clasa problemelor rezolvabile în spațiu polinomial
+	      (dar timp nelimitat).
+	\item \textbf{EXP} este clasa problemelor în timp exponențial.
+\end{itemize}
+
+\textbf{NP} este clasa problemelor pentru care, dacă răspunsul este \glqq
+da\grqq, atunci există o \emph{demonstrație} de dimensiune polinomială care
+poate fi \emph{verificată} în timp polinomial. (\textbf{NP} vine de la
+``Nondeterministic Polynomial", în Română \glqq Polinomial Nondeterministic\grqq.
+
+În mod clar, \textbf{P} e inclus în \textbf{NP}: e evident că, dacă putem
+rezolva o problemă în timp polinomial, putem verifica răspunsul \glqq da\grqq \
+în timp polinomial (rezolvând problema).
+
+Desigur, apare întrebarea dacă \textbf{P} e \emph{egal} cu \textbf{NP}. În alte
+cuvinte, dacă putem recunoaște eficient un răspuns, putem și să \emph{găsim}
+eficient unul? Această întrebare este adesea descrisă ca \glqq cea mai importantă
+problemă nerezolvată în informatică\grqq. Este o subestimare comică. \textbf{P}
+vs. \textbf{NP} este una dintre cele mai profunde întrebări pe care oamenii și
+le-au pus vreodată.
+
+
+% TODO: link Clay P vs NP
 
 % concluzii (> 1/2 pg)
 \section{Concluzii}
