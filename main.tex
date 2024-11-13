@@ -1,0 +1,100 @@
+% TODO: poza pentru regula miinii drepte, teorema lui varignon (precizarea ca nu se aplica la cupluri de forte), cazurile de reducere, izolarea corpurilor.
+
+\documentclass[a4paper]{article}
+
+\usepackage{amsmath} % For advanced math typesetting
+\usepackage{amsthm} % For theorems, definitions, etc.
+\usepackage{bm} % For bold math symbols (vectors)
+\usepackage{physics} % For vector notation and common physics symbols
+\usepackage[romanian]{babel} % Set language to Romanian
+\usepackage{hyperref} % For URLs
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definiție}[section]
+
+\theoremstyle{plain}% default
+\newtheorem{theorem}{Teoremă}[section]
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Atenție}
+\newtheorem*{note}{Notă}
+\newtheorem{case}{Caz particular}
+
+\title{Mecanică: Formule midterm}
+\author{Nicolas Dumitru}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+	Succesul e cînd\footnote{Pauză de fortificare intelectuală (justificare pentru scrierea cu ``î''): \url{https://catalin.francu.com/blog/2018/07/anger-vent-adunc-fontana/}} știi, bafta e cînd nimerești. Decarii le au pe amîndouă.
+\end{abstract}
+
+\section{Vectori}
+
+\subsection{Înmulțirea cu un scalar}
+
+\begin{definition}[Înmulțirea cu un scalar]
+	Fie \(s\) un scalar și \(\vec{v}\) un vector. \(v_x, v_y, v_z\) sînt componentele vectorului \(v\) pe axele \(Ox\), \(Oy\) și \(Oz\). Produsul unui vector cu un scalar este:
+	\begin{equation*}
+		s \vec{v} = s v_x \vec{i} + s v_y \vec{j} + s v_z \vec{k} \text{.}
+	\end{equation*}
+\end{definition}
+
+\subsection{Produsul scalar (``Dot product'')}
+
+\begin{definition}[Produsul scalar]
+	Fie \(\vec{v}\) și \(\vec{u}\) doi vectori și \(\theta\) unghiul dintre ei. Produsul scalar al vectorilor va fi:
+	\begin{align*}
+		\vec{v} \cdot \vec{u} & = \left|v\right| \left|u\right| \cos \theta \\
+		\vec{v} \cdot \vec{u} & = v_x u_x + v_y u_y + v_z u_z \text{.}
+	\end{align*}
+\end{definition}
+
+\subsection{Produsul vectorial (``Cross product'')}
+
+\begin{definition}[Produsul vectorial]
+	Fie \(\vec{v}\) și \(\vec{u}\) doi vectori și \(\theta\) unghiul dintre ei. Produsul vectorial al vectorilor va fi:
+	\begin{equation*}
+		\vec{v} \times \vec{u} = (\left|v\right| \left|u\right| \sin \theta) \vec n \text{,}
+	\end{equation*}
+	unde sensul versorului \(\vec n\) este dat de \textbf{regula mîinii drepte}.
+\end{definition}
+
+\begin{definition}[Regula mîinii drepte]
+	Degetul mare e îndreptat în sensul vectorului \(\vec v \times \vec u\), pe direcția sa, metacarpienele sînt vectorul \(\vec v\), degetele sînt vectorul \(\vec u\). Sensul rotației este trigonometric, dacă degetul mare arată către privitor. Alternativ, luînd în considerare faptul că vectorii sînt alunecători, putem considera că vectorul de \(\vec v\) alunecă și este degetul arătător extins, iar vectorul \(\vec u\) este degetul mijlociu, îndreptat către stînga.
+\end{definition}
+
+\begin{theorem}[Anticomutativitatea produsului vectorial]
+	Produsul vectorial nu este comutativ, ci anticomutativ:
+	\begin{equation*}
+		\vec v \times \vec u = - (\vec u \times \vec v) \text{.}
+	\end{equation*}
+\end{theorem}
+
+\begin{case}[Calculul produsului vectorial cu determinantul]
+	Pentru calculul analitic al produsului vectorial în sistemul cartezian de axe ortonormale \(x, y, z\) cu versorii \(\vec i, \vec j, \vec k\) este utilă folosirea următoarei formule:
+	\begin{equation*}
+		\vec v \times \vec u =
+		\begin{vmatrix}
+			\vec i & \vec j & \vec k \\
+			v_x    & v_y    & v_z    \\
+			u_x    & u_y    & u_z
+		\end{vmatrix} \text{.}
+	\end{equation*}
+\end{case}
+
+\section{Momentul unei forțe}
+\subsection{Momentul unei forțe în raport cu un \underline{punct}}
+
+\begin{definition}[Momentul unei forțe în raport cu un \underline{punct}]
+	\(\overrightarrow{M_O}, (\vec F)\)\textbf{momentul} unei forțe \(\vec F\) în raport cu un punct \(O\) este dat de:
+	\begin{equation*}
+		\overrightarrow{M_O} = \vec r \times \vec F \text{,}
+	\end{equation*}
+	unde \(\vec r\) este vectorul de poziție de la punctul \(O\) la punctul de aplicare al forței \(\vec F\).
+\end{definition}
+
+\end{document}
