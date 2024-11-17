@@ -1,0 +1,81 @@
+\documentclass[a4paper]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage[romanian]{babel}
+\usepackage{hyperref}
+\usepackage[a4paper, left=2.5cm, right=2.5cm, top=2cm, bottom=2cm]{geometry} % Margins
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definiție}[section]
+
+\theoremstyle{plain} % default
+\newtheorem{theorem}{Teoremă}[section]
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Atenție}
+\newtheorem*{note}{Notă}
+\newtheorem{case}{Caz particular}
+
+\newcommand{\seqlim}{\lim_{n \to \infty}}
+
+\renewcommand{\epsilon}{\varepsilon} % rounder epsilon (style preference)
+
+\title{Analiză Matematică: Rezolvări Lista 1}
+\author{Nicolas Dumitru}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\textbf{Exercițiul 7.}
+
+a) \(a_n = n - \sqrt{n^2 - n}\);
+\begin{gather*}
+	\seqlim a_n = \seqlim n - \sqrt{n^2 - n}
+	= \seqlim \frac{n^2 - (n^2 - n)}{n + \sqrt{n^2 - n}} \\
+	= \seqlim \frac{n}{n\left(1 + \sqrt{1 - \frac{1}{n}}\right)}
+	= \seqlim \frac{1}{1 + \sqrt{1 - \frac{1}{n}}} = \frac{1}{2}
+\end{gather*}
+
+b) \(a_n = \sqrt{2^n + 3^n}\)
+\begin{gather*}
+	\seqlim a_n = \seqlim \sqrt[n]{2^n + 3^n}
+	= \seqlim \sqrt[n]{3^n \left(\left(\frac{2}{3}\right)^n + 1\right)}
+	= 3 \seqlim \sqrt[n]{\left(\left(\frac{2}{3}\right)^n + 1\right)}
+	= 3 \cdot 1 = 3
+\end{gather*}
+
+c) \(a_n = \left(1 - \frac{7}{n}\right)^n\)
+\begin{gather*}
+	a_n = \left(1 - \frac{7}{n}\right)^n = \left(\left(1 - \frac{7}{n}\right)^\frac{n}{7}\right)^7 \xrightarrow{n \to \infty} e^7
+\end{gather*}
+
+
+d) \(a_n = \frac{(\ln n)^5}{\sqrt n}\)
+
+Fie funcția \(f: \mathbb R \to \mathbb R, f(x) = \frac{(\ln x)^5}{\sqrt x}\).
+\begin{gather*}
+	\seqlim a_n = \seqlim \frac{(\ln n)^5}{\sqrt n} = \lim_{x \to \infty} f(x) \overset{\text{l'Hopital (de 5 ori)}}{=} 5! \cdot 2^5 \lim_{x \to \infty} \frac{1}{\sqrt x} = 0
+\end{gather*}
+
+\textbf{Exercițiul 8.}
+Pentru simplitate, folosindu-ne de modul, luăm \(m = n + p, p \ge 0\) fără pierderea generalității.
+\begin{gather*}
+	| x_{n + p} - x_n | = \frac{1}{n + 1} + \frac{1}{n + 2} + ... + \frac{1}{n
+		+ p} \le \frac{p}{(n + 1)^2} \\
+	\frac{p}{(n + 1)^2} < \epsilon \iff n > \sqrt{\frac{\epsilon}{p}} - 1 \implies \\
+	\implies \forall \epsilon > 0, \exists N(\epsilon) \text{ a. î. } \forall m
+	\ge N(\epsilon), \forall n \ge N(\epsilon), |x_m - x_n| < \epsilon \iff \\
+    \iff x_n \text{ e șir Cauchy, deci convergent} \qed
+\end{gather*}
+
+\begin{flushright}
+	\copyright 2024 Nicolas Dumitru.
+	Acest document este licențiat sub licența \href{https://creativecommons.org/licenses/by-sa/4.0/}{Creative Commons Attribution-ShareAlike 4.0 International}.
+
+\end{flushright}
+
+\end{document}
