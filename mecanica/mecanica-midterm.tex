@@ -2,14 +2,15 @@
 % momentul intr-un punct oarecare (cand stiu momentul in alt punct) lab 16.10 (nu apare in curs)
 
 \documentclass[a4paper]{article}
+\usepackage[a4paper, left=2.5cm, right=2.5cm, top=2cm, bottom=2cm]{geometry} % Margins
 
 \usepackage{amsmath} % For advanced math typesetting
 \usepackage{amsthm} % For theorems, definitions, etc.
 \usepackage{bm} % For bold math symbols (vectors)
+\usepackage{esvect} % For vector notation
 \usepackage{physics} % For vector notation and common physics symbols
 \usepackage[romanian]{babel} % Set language to Romanian
 \usepackage{hyperref} % For URLs
-\usepackage[a4paper, left=2.5cm, right=2.5cm, top=2cm, bottom=2cm]{geometry} % Margins
 
 \theoremstyle{definition}
 \newtheorem{definition}{Definiție}[section]
@@ -18,7 +19,7 @@
 \newtheorem{theorem}{Teoremă}[section]
 
 \theoremstyle{remark}
-\newtheorem*{remark}{Atenție}
+\newtheorem*{remark}{\textbf{Atenție}}
 \newtheorem*{note}{Notă}
 \newtheorem{case}{Caz particular}
 
@@ -39,51 +40,51 @@
 \subsection{Înmulțirea cu un scalar}
 
 \begin{definition}[Înmulțirea cu un scalar]
-	Fie \(s\) un scalar și \(\vec{v}\) un vector. \(v_x, v_y, v_z\) sînt componentele vectorului \(v\) pe axele \(Ox\), \(Oy\) și \(Oz\). Produsul unui vector cu un scalar este:
+	Fie \(s\) un scalar și \(\vv{v}\) un vector. \(v_x, v_y, v_z\) sînt componentele vectorului \(v\) pe axele \(Ox\), \(Oy\) și \(Oz\). Produsul unui vector cu un scalar este:
 	\begin{equation*}
-		s \vec{v} = s v_x \vec{i} + s v_y \vec{j} + s v_z \vec{k} \text{.}
+		s \vv{v} = s v_x \vv{i} + s v_y \vv{j} + s v_z \vv{k} \text{.}
 	\end{equation*}
 \end{definition}
 
 \subsection{Produsul scalar (``Dot product'')}
 
 \begin{definition}[Produsul scalar]
-	Fie \(\vec{v}\) și \(\vec{u}\) doi vectori și \(\theta\) unghiul dintre ei. Produsul scalar al vectorilor va fi:
+	Fie \(\vv{v}\) și \(\vv{u}\) doi vectori și \(\theta\) unghiul dintre ei. Produsul scalar al vectorilor va fi:
 	\begin{align*}
-		\vec{v} \cdot \vec{u} & = \left|v\right| \left|u\right| \cos \theta \\
-		\vec{v} \cdot \vec{u} & = v_x u_x + v_y u_y + v_z u_z \text{.}
+		\vv{v} \cdot \vv{u} & = \left|v\right| \left|u\right| \cos \theta \\
+		\vv{v} \cdot \vv{u} & = v_x u_x + v_y u_y + v_z u_z \text{.}
 	\end{align*}
 \end{definition}
 
 \subsection{Produsul vectorial (``Cross product'')}
 
 \begin{definition}[Produsul vectorial]
-	Fie \(\vec{v}\) și \(\vec{u}\) doi vectori și \(\theta\) unghiul dintre ei. Produsul vectorial al vectorilor va fi:
+	Fie \(\vv{v}\) și \(\vv{u}\) doi vectori și \(\theta\) unghiul dintre ei. Produsul vectorial al vectorilor va fi:
 	\begin{equation*}
-		\vec{v} \times \vec{u} = (\left|v\right| \left|u\right| \sin \theta) \vec n \text{,}
+		\vv{v} \times \vv{u} = (\left|v\right| \left|u\right| \sin \theta) \vv n \text{,}
 	\end{equation*}
-	unde sensul versorului \(\vec n\) este dat de \textbf{regula mîinii drepte}.
+	unde sensul versorului \(\vv n\) este dat de \textbf{regula mîinii drepte}.
 \end{definition}
 
 \begin{definition}[Regula mîinii drepte]
-	Degetul mare e îndreptat în sensul vectorului \(\vec v \times \vec u\), pe direcția sa, metacarpienele sînt vectorul \(\vec v\), degetele sînt vectorul \(\vec u\). Sensul rotației este trigonometric, dacă degetul mare arată către privitor. Alternativ, luînd în considerare faptul că vectorii sînt alunecători, putem considera că vectorul de \(\vec v\) alunecă și este degetul arătător extins, iar vectorul \(\vec u\) este degetul mijlociu, îndreptat către stînga.
+	Degetul mare e îndreptat în sensul vectorului \(\vv v \times \vv u\), pe direcția sa, metacarpienele sînt vectorul \(\vv v\), degetele sînt vectorul \(\vv u\). Sensul rotației este trigonometric, dacă degetul mare arată către privitor. Alternativ, luînd în considerare faptul că vectorii sînt alunecători, putem considera că vectorul de \(\vv v\) alunecă și este degetul arătător extins, iar vectorul \(\vv u\) este degetul mijlociu, îndreptat către stînga.
 \end{definition}
 
 \begin{theorem}[Anticomutativitatea produsului vectorial]
 	Produsul vectorial nu este comutativ, ci anticomutativ:
 	\begin{equation*}
-		\vec v \times \vec u = - (\vec u \times \vec v) \text{.}
+		\vv v \times \vv u = - (\vv u \times \vv v) \text{.}
 	\end{equation*}
 \end{theorem}
 
 \begin{case}[Calculul produsului vectorial cu determinantul]
-	Pentru calculul analitic al produsului vectorial în sistemul cartezian de axe ortonormale \(x, y, z\) cu versorii \(\vec i, \vec j, \vec k\) este utilă folosirea următoarei formule:
+	Pentru calculul analitic al produsului vectorial în sistemul cartezian de axe ortonormale \(x, y, z\) cu versorii \(\vv i, \vv j, \vv k\) este utilă folosirea următoarei formule:
 	\begin{equation*}
-		\vec v \times \vec u =
+		\vv v \times \vv u =
 		\begin{vmatrix}
-			\vec i & \vec j & \vec k \\
-			v_x    & v_y    & v_z    \\
-			u_x    & u_y    & u_z
+			\vv i & \vv j & \vv k \\
+			v_x   & v_y   & v_z   \\
+			u_x   & u_y   & u_z
 		\end{vmatrix} \text{.}
 	\end{equation*}
 \end{case}
@@ -92,12 +93,54 @@
 \subsection{Momentul unei forțe în raport cu un punct}
 
 \begin{definition}[Momentul unei forțe în raport cu un \underline{punct}]
-	\(\overrightarrow{M_O}(\vec F)\), \textbf{momentul} unei forțe \(\vec F\) în raport cu un punct \(O\) este dat de:
+	\(\vv{M_O}(\vv F)\), \textbf{momentul} unei forțe \(\vv F\) în raport cu un punct \(O\) este dat de:
 	\begin{equation*}
-        \overrightarrow{M_O}(\vec F) = \vec r \times \vec F \text{,}
+		\vv{M_O}(\vv F) = \vv r \times \vv F \text{,}
 	\end{equation*}
-	unde \(\vec r\) este vectorul de poziție de la punctul \(O\) la punctul de aplicare al forței \(\vec F\).
+	unde \(\vv r\) este vectorul de poziție de la punctul \(O\) la punctul de aplicare al forței \(\vv F\).
 \end{definition}
+
+\begin{theorem}[Teorema lui Varignon]\label{varignon}
+	\textbf{Momentul rezultant} (\textbf{suma momentelor}) unui sistem de forțe
+	concurente este egal cu momentul rezultantei sistemului de forțe în raport
+	cu același punct. Vectorii se reduc la rezultanta lor.
+\end{theorem}
+
+\begin{remark}
+	\nameref{varignon} se aplică și pentru forțe cu suporturi paralele și de același sens, dar nu pentru cupluri de forțe.
+\end{remark}
+
+\subsection{Cuplul de forțe}
+\begin{definition}[Cuplul de forțe]
+	Cuplul de forțe este un ansamblu de forțe cu suporturi paralele, de sensuri contrare și egale în modul.
+\end{definition}
+
+\begin{remark}
+	\nameref{varignon} nu este adevărată pentru cuplul de forțe.
+\end{remark}
+
+Fie un cuplu de forțe \(\vv{F_A}\) și \(\vv{F_B}\) (vectori alunecători). Dacă alegem două puncte \(A\) pe dreapta suport a lui \(\vv{F_A}\) și \(B\) pe dreapta suport a lui \(\vv{F_B}\), momentul \(M\) al cuplului de forțe va fi dat de:
+\begin{equation*}
+	\vv M = \vv{BA} \times \vv{F_a} = \vv{AB} \times \vv{F_B}
+\end{equation*}
+și va fi un vector liber.
+
+\subsection{Torsorul de reducere}
+\begin{definition}
+	Torsorul de reducere al unui sistem de forțe concurente într-un punct O, este:
+	\begin{equation*}
+		\tau_O \left\{
+		\begin{aligned}
+            & \vv R = \sum_i^n \vv{F_i} = R_x \vv i + R_y \vv j + R_z \vv k \\
+            & \vv{M_O} = \sum_i^n \vv{M_O}\left(\vv{F_i}\right) = M_{Ox} \vv i + M_{Oy} \vv j + M_{Oz} \vv k \\
+		\end{aligned}
+		\right.
+	\end{equation*}
+\end{definition}
+
+\begin{remark}
+    Dacă există și alte momente care acționează asupra corpului, care nu contribuie la rezultantă (e.g. cupluri de forțe), ele se vor descompune pe componente pe axele \(x,y, z\) ca celelalte forțe și momente și se componentele se vor aduna la \(\vv M_O\).
+\end{remark}
 
 \begin{flushright}
 	\copyright 2024 Nicolas Dumitru.
