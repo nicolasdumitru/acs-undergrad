@@ -1,11 +1,12 @@
-\documentclass{article}
+\documentclass[a4paper]{article}
 
 \usepackage[romanian]{babel}
 \usepackage{amsmath}
 \usepackage{indentfirst} % indenteaza primul paragraf din fiecare sectiune
 \usepackage{graphicx}
-\usepackage{caption}
 \usepackage{hyperref}
+\usepackage{caption}
+\usepackage{subcaption} % pentru subfiguri
 
 \title{Referat: Termistorul \\ \large Studiul Variației Rezistenței Electrice cu
 	Temperatura la Materiale Semiconductoare}
@@ -89,25 +90,29 @@ Rezistența unei probe semiconductoare este dată de ecuația
 \end{equation}
 și ilustrată în Figura \ref{fig:grafic_RT}.
 
-\begin{figure}[htbp]
-	\centering
-	\includegraphics[width=0.6\textwidth]{rez-temp.png}
-	\caption{Dependența rezistenței de temperatură}
-	\label{fig:grafic_RT}
-\end{figure}
-
 Prin logaritmare expresiei \eqref{eq:rezistenta}, obținem
 \begin{equation}
 	\ln R = C + \frac{\Delta E}{2kT}
 	\text{.}
 \end{equation}
 
-\section{Schițe}
+\section{Schițe și grafice}
 \begin{figure}[htbp]
 	\centering
-	\includegraphics[width=0.6\textwidth]{device.png}
-	\caption{Dependența rezistenței de temperatură}
-	\label{fig:device}
+	\begin{subfigure}{0.45\textwidth}
+		\centering
+		\includegraphics[width=\linewidth]{rez-temp.png}
+		\caption{Dependența rezistenței de temperatură}
+		\label{fig:grafic_RT}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}{0.45\textwidth}
+		\centering
+		\includegraphics[width=\linewidth]{device.png}
+		\caption{Dispozitivul experimental}
+		\label{fig:device}
+	\end{subfigure}
+	\caption{}
 \end{figure}
 
 \end{document}
