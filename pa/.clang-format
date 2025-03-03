@@ -1,0 +1,29 @@
+# Documentation:
+# https://clang.llvm.org/docs/ClangFormatStyleOptions.html
+
+BasedOnStyle: LLVM
+Language: Cpp
+
+ColumnLimit: 80
+
+IndentWidth: 4
+ContinuationIndentWidth: 4
+AccessModifierOffset: -4
+TabWidth: 8
+UseTab: Never
+
+IndentCaseLabels: false
+BreakBeforeBraces: Attach
+AllowShortBlocksOnASingleLine: Empty
+AllowShortFunctionsOnASingleLine: Empty
+AllowShortIfStatementsOnASingleLine: Never
+AllowShortLoopsOnASingleLine: false
+AllowShortCaseLabelsOnASingleLine: true
+AlwaysBreakTemplateDeclarations: Yes
+
+PointerAlignment: Right
+
+SortIncludes: CaseInsensitive
+
+AlignTrailingComments: true
+SpacesBeforeTrailingComments: 1

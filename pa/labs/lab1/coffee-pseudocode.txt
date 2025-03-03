@@ -1,0 +1,13 @@
+// Pseudocod similar cu cel din "Introduction to Algorithms", de Cormen, Leiserson, Rivest, Stein
+FIERBE_APA(Apa)
+MACINA_CAFEA(Cafea)
+ADAUGA_CAFEA(Ceasca, Pudra_Cafea)
+TOARNA_APA(Ceasca, Apa)
+if se doreste Lapte then
+    ADAUGA_LAPTE(Ceasca, Lapte)
+if se doreste Zahar then
+    ADAUGA_ZAHAR(Ceasca, Zahar)
+if se doreste Frisca then
+    ADAUGA_FRISCA(Ceasca, Frisca)
+AMESTECA(Ceasca)
+return Ceasca

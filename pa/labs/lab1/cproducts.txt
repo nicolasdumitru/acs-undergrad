@@ -1,0 +1,6 @@
+1. Linux (Kernel)
+2. Git
+3. Python (CPython)
+4. Apache HTTP Server
+5. GNU Compiler Collection (parțial)
+6. GNU Emacs (parțial)
