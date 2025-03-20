@@ -3,8 +3,10 @@
 \usepackage[romanian]{babel}
 \usepackage{amsmath}
 \usepackage{amsthm}
+\usepackage{amssymb}
 \usepackage{indentfirst}
 \usepackage{graphicx}
+\usepackage{enumerate}
 
 \renewcommand{\refname}{Bibliography}
 
@@ -20,15 +22,83 @@
 
 % introducere - context, structura lucrarii (> 1/2 pg)
 \section{Introducere}
+Se poate spune că teoria complexității computaționale este între cele mai
+însemnate realizări intelectuale ale umanității, împreună cu focul, roata și
+teoria computabilității \cite{qcsd}.
+
 Analizarea resursele necesare pentru rularea unui algoritm este critică pentru
 determinarea eficienței sale și astfel are o importanță deosebită pentru
 descrierea funcționării sale, împreună cu demonstrarea corectitudinii
-răspunsurilor date de acestea. Resursele care ne interesează sunt \emph{timpul}
+răspunsurilor date de acestea. Resursele care ne interesează cel mai adesea sunt \emph{timpul}
 și \emph{memoria}.
-pentru analiza eficienței \emph{asimptotice} a algoritmilor,
+
+
+Ordinul de creștere al timpului de rulare al unui algoritm este o metodă simplă
+de caracterizare a eficienței sale și ne permite să îl comparăm cu algoritmi
+alternativi \cite{clrs}.
 
 % literature review/state of the art - studi in domeniu (> 1 pg)
 \section{Literature review} % o sa gasim alt titlu (Românesc) pentru sectiunea asta
+
+\subsection{Notații asimptotice}
+
+\begin{description}
+	\item[Notația $O$] \emph{limită superioară} pentru comportamentul asimptotic
+	      al unei funcții.
+	\item[Notația $\Omega$] \emph{limită inferioară} pentru comportamentul
+	      asimptotic al unei funcții.
+	\item[Notația $\Theta$] \emph{limită strânsă} pentru comportamentul
+	      asimptotic al unei funcții.
+\end{description}
+
+Definițiile formale pentru cele trei notații asimptotice sunt:
+\begin{enumerate}
+	\item Notația $O$
+	      \begin{multline}
+		      O(g(n)) = \{ f(n) \mid \exists c \in \mathbb{R},
+		      \exists n_0 \in \mathbb{N},\; c > 0,\, n > 0 \text{ astfel încât } \\
+		      \forall n \geq n_0, 0 \le f(n) \leq c g(n) \}
+	      \end{multline}
+
+	\item Notația $\Omega$
+	      \begin{multline}
+		      \Omega(g(n)) = \{ f(n) \mid \exists c \in \mathbb{R},
+		      \exists n_0 \in \mathbb{N},\; c > 0,\, n > 0 \text{ astfel încât } \\
+		      \forall n \geq n_0, 0 \le c g(n) \leq f(n) \}
+	      \end{multline}
+
+	\item Notația $\Theta$
+	      \begin{multline}
+		      \Theta(g(n)) = \{ f(n) \mid \exists c_1, c_2 \in \mathbb{R},
+		      \exists n_0 \in \mathbb{N},\; c > 0,\, n > 0 \text{ astfel încât } \\
+		      \forall n \geq n_0, 0 \le c_1 g(n) \leq f(n) \leq c_2 g(n) \}
+	      \end{multline}
+
+	\item Notația $o$
+	      \begin{multline}
+		      o(g(n)) = \{ f(n) \mid \exists c \in \mathbb{R},
+		      \exists n_0 \in \mathbb{N},\; c > 0,\, n > 0 \text{ astfel încât } \\
+		      \forall n \geq n_0, 0 \leq f(n) \leq c g(n) \}
+	      \end{multline}
+
+	\item Notația $\omega$
+	      \begin{multline}
+		      \omega(g(n)) = \{ f(n) \mid \forall c > 0,
+		      \exists n_0 > 0 \text{ astfel încât } \\
+		      0 \leq c g(n) < f(n), \forall n \geq n_0 \}
+	      \end{multline}
+
+\end{enumerate}
+
+\subsection{Notații asimptotice în ecuații și inecuații}
+Numărul de funcții anonime dintr-o expresie este înțeles ca fiind egal cu
+numărul de apariții ale notației asimptotice. De exemplu, în expresia
+\begin{equation*}
+	\sum_{i = 1}^{n} O(i) \text{,}
+\end{equation*}
+avem o singură funcție anonimă (functie de $i$). Expresia \emph{nu} este,
+deci echivalentă cu $O(1) + O(2) + \cdots + O(n)$, care nu are o interpretare
+clară.
 
 % aplicatii in lumea reala/use cases (> 1 pg)
 \section{Importanța complexității algoritmilor}
