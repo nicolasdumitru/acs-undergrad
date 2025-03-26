@@ -2,15 +2,13 @@
 
 \usepackage[romanian]{babel}
 \usepackage{amsmath}
-\usepackage{amsthm}
 \usepackage{amssymb}
 \usepackage{indentfirst}
 \usepackage{graphicx}
-\usepackage{enumerate}
+\usepackage{enumitem}
 \usepackage{fancyhdr}
 \usepackage{hyperref}
-
-\renewcommand{\refname}{Bibliography}
+\usepackage{float}
 
 \pagestyle{fancy}
 % \fancyhf{}
@@ -59,7 +57,6 @@ alternativi \cite{clrs}.
 	      asimptotic al unei funcții.
 \end{description}
 
-Definițiile formale pentru cele trei notații asimptotice sunt:
 \begin{enumerate}
 	\item Notația $O$
 	      \begin{multline}
@@ -97,6 +94,13 @@ Definițiile formale pentru cele trei notații asimptotice sunt:
 	      \end{multline}
 \end{enumerate}
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{clrs-o-omega-theta.png}
+	\caption{Reprezentări grafice pentru semnificațiile notațiilor asimptotice}
+	\label{fig:o_omega_theta}
+\end{figure}
+
 Intuitiv, notația $o$ înseamnă că $f(n)$ devine nesemnificativ în comparație cu
 $g(n)$ când $n$ devine mare:
 \begin{equation*}
@@ -108,8 +112,7 @@ Relația $f(n) = \omega(g(n))$ implică
 	\lim_{n \to \infty} \frac{f(n)}{g(n)} = \infty
 \end{equation*}
 dacă există limita. În alte cuvinte, $f(n)$ devine arbitrar de mare față de g(n)
-când n devine mare.
-
+când n devine mare \cite{clrs}.
 
 \subsection{Notații asimptotice în ecuații și inecuații}
 Numărul de funcții anonime dintr-o expresie este înțeles ca fiind egal cu
@@ -149,32 +152,39 @@ Grădinii Zoogice a Complexității.
 \textbf{NP} este clasa problemelor pentru care, dacă răspunsul este \glqq
 da\grqq, atunci există o \emph{demonstrație} de dimensiune polinomială care
 poate fi \emph{verificată} în timp polinomial. (\textbf{NP} vine de la
-``Nondeterministic Polynomial", în Română \glqq Polinomial Nondeterministic\grqq.
+``Nondeterministic Polynomial", în Română \glqq Polinomial Nondeterministic\grqq \cite{qcsd}.
 
 În mod clar, \textbf{P} e inclus în \textbf{NP}: e evident că, dacă putem
 rezolva o problemă în timp polinomial, putem verifica răspunsul \glqq da\grqq \
-în timp polinomial (rezolvând problema).
+în timp polinomial (rezolvând problema) \cite{cook_pvsnp}.
 
 Desigur, apare întrebarea dacă \textbf{P} e \emph{egal} cu \textbf{NP}. În alte
 cuvinte, dacă putem recunoaște eficient un răspuns, putem și să \emph{găsim}
 eficient unul? Această întrebare este adesea descrisă ca \glqq cea mai importantă
 problemă nerezolvată în informatică\grqq. Este o subestimare comică. \textbf{P}
 vs. \textbf{NP} este una dintre cele mai profunde întrebări pe care oamenii și
-le-au pus vreodată.
+le-au pus vreodată \cite{qcsd}.
 
-
-% TODO: link Clay P vs NP
-
-% concluzii (> 1/2 pg)
-\section{Concluzii}
+\section{Appendix}
+\begin{tabular}{| c | c | c |}
+	\hline
+	$O(n)$       & $\Omega(n)$  & $\Theta(n)$  \\
+	\hline
+	\textbf{P}   & \textbf{NP}  & \textbf{ZPP} \\
+	\hline
+	\textbf{BPP} & \textbf{BQP} & \textbf{PP}  \\
+	\hline
+\end{tabular}
 
 \begin{thebibliography}{ }
 	\bibitem{clrs}
 	Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.
 	\bibitem{qcsd}
 	Aaronson, Scott. Quantum computing since Democritus. Cambridge University Press, 2013.
-	\bibitem{karp}
-	Karp, Richard M. "Reducibility among combinatorial problems." 50 Years of Integer Programming 1958-2008: from the Early Years to the State-of-the-Art. Berlin, Heidelberg: Springer Berlin Heidelberg, 2009. 219-241.
+	\bibitem{cook_pvsnp}
+	Cook, Stephen A. "The complexity of theorem-proving procedures." Logic,
+	automata, and computational complexity: The works of Stephen A. Cook. 2023.
+	143-152.
 \end{thebibliography}
 
 \end{document}
