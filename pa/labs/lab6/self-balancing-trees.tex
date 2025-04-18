@@ -1,0 +1,110 @@
+\documentclass{article}
+
+\usepackage{enumitem}
+
+\usepackage{amsmath}
+\usepackage{amsthm}
+
+\theoremstyle{definition}
+\newtheorem{defn}{Definiția}
+
+\title{Arbori echilibrați}
+\author{Nicolas Dumitru}
+
+\begin{document}
+
+\maketitle
+
+Un arbore B (numit in continuare B-tree) este arbore echilibrat de cautare
+proiectat să funcționeze bine pe medii de stocare secundare. Un B-tree e similar
+cu un red-black tree, dar e mai bun pentru minimizarea operatiilor care
+acceseaza mediile de stocare. Multe sisteme de baze de date folosesc B-trees sau
+variante ale lor pentru a stoca informatii.
+B-trees difera de red-black trees prin faptul ca nodurile unui B-tree pot avea
+multi copii (deci arborele nu este neaparat binar). Similar cu arborii
+rosu-negru, B-trees pot fi folositi pentru operatii pe multimi in timp O(log n)
+(unde n e numarul de noduri): cautare, insertie, stergere.
+
+\begin{defn}[B-tree (conform CLRS]
+	Un arbore B (B-tree) T este un arbore cu
+	rădăcina T.root care are următoarele proprietăți:
+	\begin{enumerate}[label=\arabic*.]
+		\item Fiecare nod x are următoarele atribute:
+		      \begin{enumerate}[label=\alph*.]
+			      \item $x.n$, numărul de chei (keys) stocate în nodul $x$,
+			      \item cele $x.n$ chei, $x.key_1, x.key_2, \dots, x.key_{x.n}$, stocate în ordine
+			            monoton crescătoare, astfel încît
+			            $x.key_1 \leq x.key_2 \leq \dots \leq x.key_{x.n}$,
+			      \item $x.\mathit{leaf}$, o valoare booleană care e $\mathtt{TRUE}$ dacă $x$ e o frunză și $\mathtt{FALSE}$ dacă $x$
+			            e un nod intern.
+		      \end{enumerate}
+
+		\item Fiecare nod intern $x$ conține $x.n + 1$ pointeri $x.c_1, x.c_2, \dots, x.c_{x.n + 1}$ către copiii săi. Nodurile frunză nu au copii, deci
+		      atributele lor $c_i$ sînt nedefinite.
+
+		\item Cheile x.key separă intervalele de chei stocate în fiecare
+		      subtree: dacă $k_i$ e orice cheie în subarborele cu rădăcina $x.c_i$,
+		      atunci
+		      \begin{equation*}
+			      k_1 \leq x.key_1 \leq k_2 \leq x.key_2 \leq \dots \leq x.key_{x.n} \leq k_{x.n + 1} \text{.}
+		      \end{equation*}
+
+		\item Toate frunzele au aceeași adîncime, care este înălțimea $h$ a arborelui.
+
+		\item Nodurile au limite inferioare și superioare pentru numărul de chei
+		      pe care le pot conține, exprimate în funcție de
+		      un întreg fixat $t \geq 2$ numit gradul minim
+		      (minimum degree) al arborelui B:
+		      \begin{enumerate}[label=\alph*.]
+			      \item Fiecare nod cu excepția rădăcinii
+			            trebuie să aibă cel puțin $t - 1$ chei.
+			            Fiecare nod intern cu excepția rădăcinii are
+			            așadar cel puțin $t$ copii. Dacă arborele nu
+			            e gol, rădăcina trebuie să aibă cel puțin o
+			            cheie.
+			      \item Fiecare nod poate conține cel mult
+			            $2t- 1$ chei. Prin urmare, un nod intern
+			            poate avea cel mult $2t$ copii. Spunem că un
+			            nod e \emph{plin} dacă conține exact $2t -
+				            1$ chei.
+		      \end{enumerate}
+	\end{enumerate}
+\end{defn}
+
+\begin{defn}[AVL Tree]
+	Un \emph{AVL-tree} este un binary search tree echilibrat, care respectă
+	următoarele proprietăți:
+
+	\begin{enumerate}
+		\item \textbf{Proprietatea de căutare:} Pentru orice nod $v$,
+		      \begin{equation*}
+			      \forall\, u \in \text{subarborele stîng al
+				      lui } v:\; \mathrm{key}(u) <
+			      \mathrm{key}(v), \quad \forall\, w \in
+			      \text{subarborele drept al lui } v:\;
+			      \mathrm{key}(w) > \mathrm{key}(v) \text{.}
+		      \end{equation*}
+		\item \textbf{Proprietatea de echilibru:} Pentru orice nod $v$, factorul de echilibru
+		      \begin{equation*}
+			      \mathrm{bf}(v) = \mathrm{height}(v.l) - \mathrm{height}(v.r)
+		      \end{equation*}
+		      satisface
+		      $\mathrm{bf}(v) \in \{-1,0,1\}$, $v.l$ și $v.r$ fiind subarborele stîng și subarborele drept.
+		\item \textbf{Menținerea echilibrului:} După fiecare inserție sau ștergere, dacă pentru un nod $v$
+		      $\lvert \mathrm{bf}(v)\rvert > 1$, atunci structura arborelui este corectată prin una din cele patru rotații:
+		      \begin{itemize}
+			      \item Rotire simplă la dreapta (\textit{Right Rotation})
+			      \item Rotire simplă la stânga (\textit{Left Rotation})
+			      \item Dublă rotire stânga–dreapta (\textit{Left–Right Rotation})
+			      \item Dublă rotire dreapta–stânga (\textit{Right–Left Rotation})
+		      \end{itemize}
+	\end{enumerate}
+
+\end{defn}
+
+Operațiile de căutare, inserare și ștergere într-un B-tree sau într-un AVL-tree
+au complexitate $O(\log n)$, unde $n$ este numărul de noduri. Pentru a asigura
+această complexitate, orice operație de modificare trebuie să reechilibreze
+arborele.
+
+\end{document}
