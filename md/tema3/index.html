@@ -1,0 +1,52 @@
+<!doctype html>
+
+<html>
+    <head>
+        <title>Formular înscriere Newsletter</title>
+    </head>
+    <body>
+        <h1>Înscrieți-vă la Newsletter</h1>
+        <form action="#" method="post">
+            <label for="email">Adresa email:</label>
+            <input type="email" id="email" name="email" required />
+
+            <label for="frequency">Frecvența dorită pentru emailuri:</label>
+            <div class="form-group">
+                <select id="frequency" name="frequency">
+                    <option value="daily">zilnic</option>
+                    <option value="weekly">saptămînal</option>
+                    <option value="monthly">lunar</option>
+                </select>
+            </div>
+
+            <div class="radio-container">
+                <label for="format">Formatul dorit pentru emailuri:</label>
+                <input
+                    type="radio"
+                    id="html"
+                    name="format"
+                    value="html"
+                    checked
+                />
+                <label for="html">HTML</label>
+                <input type="radio" id="plaintext" name="format" value="text" />
+                <label for="plaintext">Text</label>
+            </div>
+
+            <div class="checkbox">
+                <input type="checkbox" id="checkbox" name="consent" required />
+                <label for="checkbox"
+                    >Accept Termenii și condițiile și Politica de
+                    confidențialitate</label
+                >
+            </div>
+
+            <div class="form-group">
+                <button type="send">Send</button>
+                <button type="reset">Reset</button>
+            </div>
+        </form>
+        <br />
+        <img src="rickroll.gif" alt="Rickroll" />
+    </body>
+</html>
