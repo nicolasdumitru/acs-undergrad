@@ -6,6 +6,7 @@
 #include <stddef.h>
 #include <stdint.h>
 #include <stdio.h>
+#include <string.h>
 
 typedef size_t usize;
 typedef ptrdiff_t isize;
@@ -18,57 +19,70 @@ typedef int32_t i32;
 typedef uint64_t u64;
 typedef int64_t i64;
 
-typedef struct Vertex Vertex;
-struct Vertex {
-    Vertex *left;
-    Vertex *right;
+typedef struct BinTree BinTree;
+struct BinTree {
+    i32 key;
+    BinTree *left;  // the left subtree
+    BinTree *right; // the right subtree
 };
-
-typedef struct {
-    bool ans;
-    usize height;
-} AnsHeightPair;
+// Note: In this particular implementation, the binary tree is a recursive
+// structure. The `key` member is the key of the root node of the (sub)tree and
+// `left` and `right` are pointers to the left and right subtrees respectively.
+// Each subtree is also a BinTree. A NULL pointer indicates the absence of a
+// subtree. The clarification regarding the recursive nature of the structure is
+// particularly relevant for understanding design decisions made in the
+// implementations of some functions below.
 
 usize abs_diff(usize a, usize b) {
-    if (a < b) {
-        usize aux = a;
-        a = b;
-        b = aux;
-    }
-    return a - b;
+    return a >= b ? a - b : b - a;
 }
 
-AnsHeightPair is_balanced(Vertex *root) {
-    AnsHeightPair result = (AnsHeightPair){true, 0};
-    if (root->left != NULL && root->right != NULL) {
-        AnsHeightPair l, r;
-        l = is_balanced(root->left);
-        r = is_balanced(root->right);
-        if (!l.ans || !r.ans || abs_diff(l.height, r.height) > 1)
-            return (AnsHeightPair){false, 0};
-        result = (l.height > r.height) ? l : r;
-    } else if (root->left != NULL) {
-        result = is_balanced(root->left);
-    } else if (root->right != NULL) {
-        result = is_balanced(root->right);
-    }
+typedef struct {
+    bool answer; // TODO: maybe rename this?
+    usize height;
+} TreeStatus;
 
-    result.height += 1;
+// This function uses a postorder tree walk to determine whether the tree is
+// balanced. The left and right subtrees are visited recursively before it is
+// possible to check whether the tree is balanced.
+// Optimization: `height` in TreeStatus is greater than the actual height of the
+// tree by 1 at all times. This eliminates the need for another conditional
+// while preserving the correctness of the function.
+TreeStatus BinTree_is_balanced_impl(const BinTree *tree) {
+    const TreeStatus left = tree->left != NULL
+                                ? BinTree_is_balanced_impl(tree->left)
+                                : (TreeStatus){true, 0};
+    // Optimization: There is no point in checking the right subtree if the left
+    // is unbalanced anyway.
+    const TreeStatus right = tree->right != NULL && left.answer
+                                 ? BinTree_is_balanced_impl(tree->right)
+                                 : (TreeStatus){left.answer, 0};
 
-    return result;
+    return (TreeStatus){
+        left.answer && right.answer && abs_diff(left.height, right.height) <= 1,
+        1 + (left.height > right.height ? left.height : right.height)};
 }
 
-#define N 5
+bool BinTree_is_balanced(BinTree *tree) {
+    // Note: By convention, an empty tree is considered balanced.
+    return tree != NULL ? BinTree_is_balanced_impl(tree).answer : true;
+}
+
+// This function uses a postorder tree walk to find the Lowest Common Ancestor
+// (LCA) of nodes `node1` and `node2` in tree `tree`.
+// Note: It is assumed that the input is valid and, thus both `node1` and
+// `node2` are present in the tree.
+BinTree *BinTree_lca(BinTree *tree, const BinTree *node1,
+                     const BinTree *node2) {
+    if (tree == NULL || tree == node1 || tree == node2) return tree;
+
+    BinTree *left = BinTree_lca(tree->left, node1, node2);
+    BinTree *right = BinTree_lca(tree->right, node1, node2);
+
+    // If both left and right are not NULL, the root is the LCA.
+    return left != NULL ? (right != NULL ? tree : left) : right;
+}
+
 int main(void) {
-
-    Vertex v[N + 1] = {{NULL, NULL}, {NULL, NULL}, {NULL, NULL}, {NULL, NULL}, {NULL, NULL}, {NULL, NULL}};
-    for (usize i = 1; i <= N / 2; i += 1) {
-        v[i].left = &v[2 * i];
-        v[i].right = &v[2 * i + 1];
-    }
-
-    AnsHeightPair r = is_balanced(&v[1]);
-    printf("%d\n", r.ans);
-
     return 0;
 }
