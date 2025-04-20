@@ -1,5 +1,5 @@
 // === Source Information ===
-// Copyright (C) 2024 Nicolas Dumitru
+// Copyright (C) 2025 Nicolas Dumitru
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 #include <stdbool.h>
