@@ -1,0 +1,32 @@
+# The default recipe is always the first recipe in the justfile
+
+# The recipe to run when just is invoked without a recipe
+default: list
+
+# List available recipes
+list:
+    @just --list
+
+build_dir := 'target'
+
+setup build_type='release':
+    meson setup {{build_dir}} --reconfigure  --backend=ninja --buildtype={{build_type}}
+    ln -sf {{build_dir}}/compile_commands.json compile_commands.json
+
+build:
+    meson compile -C {{build_dir}}
+
+run: build
+    ./{{build_dir}}/main
+
+clean:
+    ninja -C {{build_dir}} clean
+
+distclean:
+    rm -rf {{build_dir}}
+    rm -f compile_commands.json
+
+# Format all C files
+format:
+    clang-format -i $(fd '\.c' --full-path "$(git rev-parse --show-toplevel)")
+alias fmt := format
