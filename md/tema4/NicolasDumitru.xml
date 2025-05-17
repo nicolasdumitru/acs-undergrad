@@ -1,0 +1,36 @@
+<newsletter>
+    <title>ACS Tech Update</title>
+    <issueNumber>0</issueNumber>
+    <datePublished>2025-05-15</datePublished>
+
+    <editor>
+        <name>Nicolas Dumitru</name>
+        <email>nicolas@ndumitru.com</email>
+    </editor>
+
+    <articles>
+        <article>
+            <title>Latest AI Research (May 2025)</title>
+            <author name="Ion Popescu" email="ionp@oricedarnuyahoo.com" id="983874"></author>
+            <summary>Exploring the top developments in artificial intelligence so far this year.</summary>
+            <contentURL>https://blog.acs.pub.ro/ai-research-may-2025</contentURL>
+        </article>
+        <article>
+            <title>Cybersecurity: 1 year since a backdoor found in XZ Utils</title>
+            <author name="Maria Sandu" email="maria@urascwebdev.com" id="1234"></author>
+            <summary>Post-mortem of the backdoor incident, its implications and potential prevention methods.</summary>
+            <contentURL>https://blog.acs.pub.ro/cybersecurity-2025</contentURL>
+        </article>
+    </articles>
+
+    <subscribers>
+        <subscriber>
+            <name>Lamine Yamal</name>
+            <email>lamine.yamal@nimeninimic.com</email>
+        </subscriber>
+        <subscriber>
+            <name>Fratele Louis Yamal</name>
+            <email>caterinca@fotbal.ro</email>
+        </subscriber>
+    </subscribers>
+</newsletter>

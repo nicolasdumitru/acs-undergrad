@@ -1,0 +1,47 @@
+{
+  "newsletter": {
+    "title": "ACS Tech Update",
+    "issueNumber": "0",
+    "datePublished": "2025-05-15",
+    "editor": {
+      "name": "Nicolas Dumitru",
+      "email": "nicolas@ndumitru.com"
+    },
+    "articles": {
+      "article": [
+        {
+          "title": "Latest AI Research (May 2025)",
+          "author": {
+            "_name": "Ion Popescu",
+            "_email": "ionp@oricedarnuyahoo.com",
+            "_id": "983874"
+          },
+          "summary": "Exploring the top developments in artificial intelligence so far this year.",
+          "contentURL": "https://blog.acs.pub.ro/ai-research-may-2025"
+        },
+        {
+          "title": "Cybersecurity: 1 year since a backdoor found in XZ Utils",
+          "author": {
+            "_name": "Maria Sandu",
+            "_email": "maria@urascwebdev.com",
+            "_id": "1234"
+          },
+          "summary": "Post-mortem of the backdoor incident, its implications and potential prevention methods.",
+          "contentURL": "https://blog.acs.pub.ro/cybersecurity-2025"
+        }
+      ]
+    },
+    "subscribers": {
+      "subscriber": [
+        {
+          "name": "Lamine Yamal",
+          "email": "lamine.yamal@nimeninimic.com"
+        },
+        {
+          "name": "Fratele Louis Yamal",
+          "email": "caterinca@fotbal.ro"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,22 @@
+<!DOCTYPE newsletter [
+<!ELEMENT newsletter (title, issueNumber, datePublished, editor, articles, subscribers)>
+<!ELEMENT title (#CDATA)>
+<!ELEMENT issueNumber (#CDATA)>
+<!ELEMENT datePublished (#CDATA)>
+<!ELEMENT editor (name, email)>
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT email (#CDATA)>
+<!ELEMENT articles (article)>
+<!ELEMENT article (title, author, summary, contentURL)>
+<!ELEMENT title>
+<!ELEMENT author EMPTY>
+<!ATTLIST author
+    name CDATA #REQUIRED
+    email CDATA #IMPLIED
+    id CDATA #REQUIRED
+>
+<!ELEMENT summary (#CDATA)>
+<!ELEMENT contentURL (#CDATA)>
+<!ELEMENT subscribers (subscriber)>
+<!ELEMENT subscriber (name, email)>
+]>
