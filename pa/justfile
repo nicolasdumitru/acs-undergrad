@@ -9,18 +9,21 @@ list:
 
 build_dir := 'target'
 
-setup build_type='release':
-    meson setup {{build_dir}} --reconfigure  --backend=ninja --buildtype={{build_type}}
+setup build_type=default_build_type flags='--reconfigure':
+    meson setup {{build_dir}} {{flags}} --backend=ninja --buildtype={{build_type}}
     ln -sf {{build_dir}}/compile_commands.json compile_commands.json
+default_build_type := 'release'
+
+wipe build_type=default_build_type: (setup build_type '--wipe')
 
 build:
     meson compile -C {{build_dir}}
 
-run: build
-    ./{{build_dir}}/main
+run args='': build
+    ./{{build_dir}}/main {{args}}
 
 clean:
-    ninja -C {{build_dir}} clean
+    meson compile -C {{build_dir}} --clean
 
 distclean:
     rm -rf {{build_dir}}
