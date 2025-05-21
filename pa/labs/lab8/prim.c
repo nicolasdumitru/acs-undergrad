@@ -1,9 +1,9 @@
+#include <stdbool.h>
+#include <stddef.h>
+#include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <stdbool.h>
-#include <stdint.h>
-#include <stddef.h>
 
 typedef size_t usize;
 typedef int64_t i64;
@@ -23,9 +23,15 @@ typedef struct {
     usize capacity;
 } minpq;
 
-static inline usize parent(usize i) { return i >> 1; }
-static inline usize left(usize i)   { return i << 1; }
-static inline usize right(usize i)  { return (i << 1) + 1; }
+static inline usize parent(usize i) {
+    return i >> 1;
+}
+static inline usize left(usize i) {
+    return i << 1;
+}
+static inline usize right(usize i) {
+    return (i << 1) + 1;
+}
 
 static void swap(edge **a, edge **b) {
     edge *tmp = *a;
@@ -36,8 +42,8 @@ static void swap(edge **a, edge **b) {
 minpq minpq_create(usize capacity) {
     if (capacity < 1) capacity = 1;
     minpq pq;
-    pq.data     = malloc(sizeof(edge*) * (capacity + 1));
-    pq.size     = 0;
+    pq.data = malloc(sizeof(edge *) * (capacity + 1));
+    pq.size = 0;
     pq.capacity = capacity;
     return pq;
 }
@@ -65,7 +71,7 @@ void minpq_heapify_down(minpq *pq, usize i) {
 void minpq_push(minpq *pq, edge *e) {
     if (pq->size + 1 > pq->capacity) {
         pq->capacity *= 2;
-        pq->data = realloc(pq->data, sizeof(edge*) * (pq->capacity + 1));
+        pq->data = realloc(pq->data, sizeof(edge *) * (pq->capacity + 1));
     }
     pq->data[++pq->size] = e;
     minpq_heapify_up(pq, pq->size);
@@ -133,7 +139,7 @@ void mst_prim(graph *g) {
     }
 
     minpq pq = minpq_create(g->v_size);
-    static edge start = { .to = 1, .weight = 0 };
+    static edge start = {.to = 1, .weight = 0};
     minpq_push(&pq, &start);
 
     usize count = 0;
@@ -165,20 +171,27 @@ void mst_prim(graph *g) {
 // Load undirected graph from CSV (u,v,weight per line)
 graph load_graph_csv(const char *filename) {
     FILE *f = fopen(filename, "r");
-    if (!f) { perror("fopen"); exit(EXIT_FAILURE); }
+    if (!f) {
+        perror("fopen");
+        exit(EXIT_FAILURE);
+    }
     char line[256];
-    typedef struct { usize u, v; i64 w; } triple;
+    typedef struct {
+        usize u, v;
+        i64 w;
+    } triple;
     triple *edges = NULL;
     usize ecount = 0, ecap = 0;
     usize maxv = 0;
     while (fgets(line, sizeof line, f)) {
-        usize u, v; i64 w;
+        usize u, v;
+        i64 w;
         if (sscanf(line, "%zu,%zu,%ld", &u, &v, &w) != 3) continue;
         if (ecount == ecap) {
             ecap = ecap ? ecap * 2 : 1024;
             edges = realloc(edges, ecap * sizeof(triple));
         }
-        edges[ecount++] = (triple){ u, v, w };
+        edges[ecount++] = (triple){u, v, w};
         if (u > maxv) maxv = u;
         if (v > maxv) maxv = v;
     }
@@ -203,8 +216,8 @@ graph load_graph_csv(const char *filename) {
     for (usize i = 0; i < ecount; i++) {
         usize u = edges[i].u, v = edges[i].v;
         i64 w = edges[i].w;
-        g.vertices[u].adj[cur[u]++] = (edge){ v, w };
-        g.vertices[v].adj[cur[v]++] = (edge){ u, w };
+        g.vertices[u].adj[cur[u]++] = (edge){v, w};
+        g.vertices[v].adj[cur[v]++] = (edge){u, w};
     }
 
     free(deg);
@@ -216,13 +229,18 @@ graph load_graph_csv(const char *filename) {
 // Serialize MST to CSV (from,to,weight)
 void serialize_mst_csv(const graph *g, const char *filename) {
     FILE *f = fopen(filename, "w");
-    if (!f) { perror("fopen"); exit(EXIT_FAILURE); }
+    if (!f) {
+        perror("fopen");
+        exit(EXIT_FAILURE);
+    }
     printf("from,to,weight\n");
     fprintf(f, "from,to,weight\n");
     for (usize i = 1; i <= g->v_size; i++) {
         if (g->vertices[i].parent != NIL) {
-            printf("%zu,%zu,%ld\n", g->vertices[i].parent, i, g->vertices[i].key);
-            fprintf(f, "%zu,%zu,%ld\n", g->vertices[i].parent, i, g->vertices[i].key);
+            printf("%zu,%zu,%ld\n", g->vertices[i].parent, i,
+                   g->vertices[i].key);
+            fprintf(f, "%zu,%zu,%ld\n", g->vertices[i].parent, i,
+                    g->vertices[i].key);
         }
     }
     fclose(f);
@@ -237,7 +255,8 @@ int main(int argc, char **argv) {
     mst_prim(&g);
     serialize_mst_csv(&g, argv[2]);
     // Clean up
-    for (usize i = 1; i <= g.v_size; i++) free(g.vertices[i].adj);
+    for (usize i = 1; i <= g.v_size; i++)
+        free(g.vertices[i].adj);
     graph_destroy(&g);
     return EXIT_SUCCESS;
 }

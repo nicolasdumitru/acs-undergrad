@@ -122,7 +122,6 @@ BinTree *BinTree_deserialize_impl(String *s, usize *pos) {
     return tree;
 }
 
-
 BinTree *BinTree_deserialize(String *s) {
     usize pos = 0;
 
@@ -135,14 +134,18 @@ BinTree *BinTree_deserialize(String *s) {
 //     2   3
 //        /
 //       4
-BinTree* make_test_tree(void) {
-    BinTree *n1 = BinTree_new(); n1->key = 1;
-    BinTree *n2 = BinTree_new(); n2->key = 2;
-    BinTree *n3 = BinTree_new(); n3->key = 3;
-    BinTree *n4 = BinTree_new(); n4->key = 4;
-    n1->left  = n2;
+BinTree *make_test_tree(void) {
+    BinTree *n1 = BinTree_new();
+    n1->key = 1;
+    BinTree *n2 = BinTree_new();
+    n2->key = 2;
+    BinTree *n3 = BinTree_new();
+    n3->key = 3;
+    BinTree *n4 = BinTree_new();
+    n4->key = 4;
+    n1->left = n2;
     n1->right = n3;
-    n3->left  = n4;
+    n3->left = n4;
 
     return n1;
 }
